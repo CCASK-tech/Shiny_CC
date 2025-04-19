@@ -1,0 +1,1 @@
+install.packages(c("tidyverse", "dplyr","shiny","ggplot2","shinythemes","bslib","openxlsx","readxl"))
