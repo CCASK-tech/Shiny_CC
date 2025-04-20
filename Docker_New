@@ -1,0 +1,20 @@
+# Use an official R image with Shiny
+FROM rocker/shiny:latest
+
+# Set working directory inside the container
+WORKDIR /srv/shiny-server/ASK_SHINY_APP
+
+# Copy the necessary files into the container
+COPY runtime.txt .
+COPY sarurday\ data\ from\ Arjun.xlsx .
+COPY install.R .
+COPY app.R .
+
+# Install required R packages from install.R
+RUN Rscript install.R
+
+# Expose the port Shiny uses
+EXPOSE 3838
+
+# Start the Shiny app
+CMD ["R", "-e", "shiny::runApp('/srv/shiny-server/ASK_SHINY_APP')"]
